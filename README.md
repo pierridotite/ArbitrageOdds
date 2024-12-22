@@ -1,88 +1,111 @@
 # README
 
 ## Project Overview
-Ce projet vise à extraire des cotes de matchs de football et à analyser les opportunités d'arbitrage. Les outils utilisés comprennent Selenium pour le scraping web, Python pour l'analyse des données et des fichiers texte pour stocker les résultats.
+This project aims to extract football match odds and analyze arbitrage opportunities. The tools used include Selenium for web scraping, Python for data analysis, and text files for storing results.
 
-### Structure des fichiers
+### File Structure
 
-- **oddslooker.py** :
-  - Script principal pour extraire les liens des matchs depuis [OddsPortal](https://www.oddsportal.com).
-  - Utilise Selenium pour parcourir les pages de différentes ligues et récupérer les URLs des matchs pertinents.
-  - Les résultats sont enregistrés dans `list_of_matches.txt`.
+- **oddslooker.py**:
+  - Main script to extract match links from [OddsPortal](https://www.oddsportal.com).
+  - Uses Selenium to navigate league pages and retrieve relevant match URLs.
+  - Results are saved in `list_of_matches.txt`.
 
-- **souptest.py** :
-  - Analyse les matchs listés dans `list_of_matches.txt`.
-  - Extrait les cotes, vérifie si les matchs sont passés et identifie les opportunités d'arbitrage.
-  - Les opportunités sont enregistrées dans `arbitrage_opportunities.txt` avec les détails des bookmakers et marges de profit potentielles.
+- **souptest.py**:
+  - Analyzes the matches listed in `list_of_matches.txt`.
+  - Extracts odds, checks if matches are in the past, and identifies arbitrage opportunities.
+  - Opportunities are recorded in `arbitrage_opportunities.txt` with details of bookmakers and potential profit margins.
 
-- **list_of_matches.txt** :
-  - Contient les URLs des matchs extraits par `oddslooker.py`.
-  - Chaque ligne représente un match différent.
+- **list_of_matches.txt**:
+  - Contains URLs of matches extracted by `oddslooker.py`.
+  - Each line represents a different match.
 
-- **arbitrage_opportunities.txt** :
-  - Contient les opportunités d'arbitrage identifiées par `souptest.py`.
-  - Les informations incluent les cotes optimales, les bookmakers correspondants et la marge de profit potentielle.
+- **arbitrage_opportunities.txt**:
+  - Contains arbitrage opportunities identified by `souptest.py`.
+  - Information includes optimal odds, corresponding bookmakers, and potential profit margins.
 
-### Prérequis
+### Prerequisites
 
 1. **Python 3.x**
-2. **Selenium WebDriver** pour le navigateur choisi (par défaut Chrome).
-3. Bibliothèques Python :
+2. **Selenium WebDriver** for the chosen browser (default is Chrome).
+3. Python Libraries:
    - `selenium`
    - `tqdm`
 
 ### Installation
 
-1. Clonez ce dépôt :
+1. Clone this repository:
    ```bash
-   git clone <URL_DU_DEPOT>
-   cd <NOM_DU_DEPOT>
+   git clone https://github.com/pierridotite/ArbitrageOdds
+   cd ArbitrageOdds
    ```
-2. Installez les dépendances nécessaires :
+2. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Téléchargez et configurez [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/).
+3. Download and configure [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/).
 
-### Utilisation
+### Usage
 
-#### Étape 1 : Extraction des liens de matchs
+#### Step 1: Extract Match Links
 
-Exécutez `oddslooker.py` pour récupérer les liens des matchs :
+Run `oddslooker.py` to retrieve match links:
 ```bash
 python oddslooker.py
 ```
-Les liens seront enregistrés dans `list_of_matches.txt`.
+Links will be saved in `list_of_matches.txt`.
 
-#### Étape 2 : Analyse des opportunités d'arbitrage
+#### Step 2: Analyze Arbitrage Opportunities
 
-Exécutez `souptest.py` pour analyser les matchs et détecter les opportunités :
+Run `souptest.py` to analyze matches and detect opportunities:
 ```bash
 python souptest.py
 ```
-Les opportunités seront enregistrées dans `arbitrage_opportunities.txt`.
+Opportunities will be saved in `arbitrage_opportunities.txt`.
 
-### Résultats
+### Results
 
-Les résultats incluent :
-- La liste des liens des matchs dans `list_of_matches.txt`.
-- Les opportunités d'arbitrage dans `arbitrage_opportunities.txt`, comprenant les cotes optimales, les bookmakers, et les marges de profit potentielles.
+#### Example Output
+
+- **list_of_matches.txt**:
+  ```
+  https://www.oddsportal.com/football/england/premier-league/nottingham-tottenham-dIMJtCwI/
+  https://www.oddsportal.com/football/italy/serie-a/ac-milan-as-roma-foxKCMGU/
+  https://www.oddsportal.com/football/france/ligue-1/lille-nantes-vgbyE4S6/
+  ```
+
+- **arbitrage_opportunities.txt**:
+  ```
+  Arbitrage opportunity for the match: https://www.oddsportal.com/football/italy/serie-a/ac-milan-as-roma-foxKCMGU/
+    Date: 29 Dec 2024, 20:45
+    1: 2.05 at 1xBet
+    X: 3.79 at 1xBet
+    2: 4.2 at Unibet
+    Sum of inverses: 0.9898
+    Potential profit margin: 1.04%
+  
+  Arbitrage opportunity for the match: https://www.oddsportal.com/football/england/premier-league/nottingham-tottenham-dIMJtCwI/
+    Date: 26 Dec 2024, 16:00
+    1: 2.55 at Unibet
+    X: 4.04 at 1xBet
+    2: 2.85 at bet-at-home
+    Sum of inverses: 0.9906
+    Potential profit margin: 0.95%
+  ```
 
 ### Contributions
 
-1. Forkez ce dépôt.
-2. Créez une branche pour vos modifications :
+1. Fork this repository.
+2. Create a branch for your changes:
    ```bash
    git checkout -b feature/new-feature
    ```
-3. Soumettez une pull request.
+3. Submit a pull request.
 
-### Avertissements
+### Warnings
 
-- Les opportunités d'arbitrage sont sensibles au temps ; les cotes peuvent changer rapidement.
-- Veuillez vérifier les lois et réglementations locales avant d'utiliser des outils d'arbitrage.
+- Arbitrage opportunities are time-sensitive; odds can change quickly.
+- Please verify local laws and regulations before using arbitrage tools.
 
-### Licence
+### License
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
-
+This project is licensed under the MIT License. See the `LICENSE` file for more information.
